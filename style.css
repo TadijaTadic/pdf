@@ -1,0 +1,30 @@
+#dropbox {
+	width: 300px;
+	height: 150px;
+	border: 2px dashed;
+	line-height: 150px;
+	text-align: center;
+}
+
+#first {
+	float: left;
+}
+
+#form {
+	border: 2px ;
+	margin-left: 350px;
+	margin-top: 50px;
+}
+
+#sec1 {
+	float: left;
+	margin-bottom: 20px;
+}
+
+#sec2 {
+	float: left;
+}
+
+#selectDates, #deliveryDate, #fileNum, #currentStatus, #newStatus, #dueDate {
+	width: 110px;
+}
