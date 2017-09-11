@@ -32,6 +32,7 @@ function resetFields() {
     document.getElementById('fileNum').value = "";
     document.getElementById('deliveryDate').value = "";
     document.getElementById('selectDates').innerHTML = "";
+    document.getElementById('newDate').value = "";
 }
 
 function newDueDate(obj) {
