@@ -5,17 +5,12 @@ var uploadedDoucuments = window.localStorage;
 var user = 'dc8e7c4e42eb80daa06cbf024f9898671c33f62d';
 var parser_id = 'oofdtinkseah';
 
-var dropbox = document.getElementById('dropbox');
-dropbox.addEventListener("dragenter", dragenter, false);
-dropbox.addEventListener("dragover", dragover, false);
-dropbox.addEventListener("drop", drop, false);
-
 function handleFiles(files) {
   resetFields();
-	selectedFile = files[0];
-	fileUrl = URL.createObjectURL(selectedFile);
-	var el = document.getElementById('pdf');
-	el.src = fileUrl;
+  selectedFile = files[0];
+  fileUrl = URL.createObjectURL(selectedFile);
+  var el = document.getElementById('pdf');
+  el.src = fileUrl;
 
   if (uploadedDoucuments.getItem(selectedFile.name) != undefined) {
     getData();
@@ -25,24 +20,30 @@ function handleFiles(files) {
   }
 }
 
-function dragenter(e) {
-  e.stopPropagation();
-  e.preventDefault();
+//GET https://api.docparser.com/v1/results/<PARSER_ID>/<DOCUMENT_ID>
+function getData() {
+  var document_id = uploadedDoucuments.getItem(selectedFile.name);
+  var url = `https://api.docparser.com/v1/results/${parser_id}/${document_id}`;
+  var req = new XMLHttpRequest();
+  req.addEventListener("loadend", getParsedData);
+  req.open('GET', url, true);
+  req.responseType = 'json';
+  req.setRequestHeader("Authorization", "Basic " + user);
+  req.send();
 }
 
-function dragover(e) {
-  e.stopPropagation();
-  e.preventDefault();
-}
+//POST https://api.docparser.com/v1/document/upload/<PARSER_ID>
+function uploadPdf() {
+  var url = `https://api.docparser.com/v1/document/upload/${parser_id}`;
+  var formData = new FormData();
+  formData.append("file", selectedFile);
 
-function drop(e) {
-  e.stopPropagation();
-  e.preventDefault();
-
-  var dt = e.dataTransfer;
-  var files = dt.files;
-
-  handleFiles(files);
+  var req = new XMLHttpRequest();
+  req.addEventListener("loadend", uploadEnd);
+  req.open('POST', url, true);
+  req.responseType = 'json';
+  req.setRequestHeader("Authorization", "Basic " + user);
+  req.send(formData);
 }
 
 function getParsedData() {
@@ -72,20 +73,16 @@ function getParsedData() {
   }
   if (due_date != null) {
       if (!Array.isArray(due_date)) {
-        var ddate = due_date.formatted.split('.');
-        document.getElementById('form').dueDate.value = `${ddate[2]}-${ddate[1]}-${ddate[0]}`;
         var select = document.getElementById('selectDates');
-        var options = document.createElement("option");
+        var options = document.createElement('option');
         options.value = due_date.formatted;
         options.textContent = due_date.formatted;
         select.appendChild(options);
       }
       else {
-        var ddate = due_date[0].formatted.split('.');
-        document.getElementById('form').dueDate.value = `${ddate[2]}-${ddate[1]}-${ddate[0]}`;
-        due_date.forEach(function(element) {
+        due_date.forEach(function(element, index) {
           var select = document.getElementById('selectDates');
-          var options = document.createElement("option");
+          var options = document.createElement('option');
           options.value = element.formatted;
           options.textContent = element.formatted;
           select.appendChild(options);
@@ -98,36 +95,4 @@ function uploadEnd() {
   console.log(this.response);
   var result = this.response;
   uploadedDoucuments.setItem(selectedFile.name, result.id);
-}
-
-//GET https://api.docparser.com/v1/results/<PARSER_ID>/<DOCUMENT_ID>
-function getData() {
-  var document_id = uploadedDoucuments.getItem(selectedFile.name);
-  var url = `https://api.docparser.com/v1/results/${parser_id}/${document_id}`;
-  var req = new XMLHttpRequest();
-  req.addEventListener("loadend", getParsedData);
-  req.open('GET', url, true);
-  req.responseType = 'json';
-  req.setRequestHeader("Authorization", "Basic " + user);
-  req.send();
-}
-
-//POST https://api.docparser.com/v1/document/upload/<PARSER_ID>
-function uploadPdf() {
-  var url = `https://api.docparser.com/v1/document/upload/${parser_id}`;
-  var formData = new FormData();
-  formData.append("file", selectedFile);
-
-  var req = new XMLHttpRequest();
-  req.addEventListener("loadend", uploadEnd);
-  req.open('POST', url, true);
-  req.responseType = 'json';
-  req.setRequestHeader("Authorization", "Basic " + user);
-  req.send(formData);
-}
-
-function resetFields() {
-  document.getElementById('fileNum').value = "";
-  document.getElementById('deliveryDate').value = "";
-  document.getElementById('selectDates').innerHTML = "";
 }

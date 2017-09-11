@@ -7,13 +7,22 @@
 }
 
 embed {
-	border: 2px solid;
+	/* border: 2px solid; */
 	width: 100%;
 	height: 1000px;
 }
 
-input, select {
+input {
 	width: 120px;
+	align-self: center;
+}
+
+select {
+	width: 125px;
+	align-self: center;
+}
+
+.due {
 	align-self: center;
 }
 
@@ -25,7 +34,7 @@ label {
 .wrapper {
 	display: grid;
 	grid-template-columns: 300px 1fr;
-	grid-gap: 10px;
+	grid-gap: 5px;
 }
 
 .first {
@@ -56,4 +65,14 @@ label {
 
 #newStatus {
 	background-color: lawngreen;
+}
+
+.inputfile {
+	opacity: 0;
+}
+
+label[for="input"] {
+	padding: 0.5em;
+	background-color: greenyellow;
+	cursor: pointer;
 }

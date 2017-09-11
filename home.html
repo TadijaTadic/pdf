@@ -7,12 +7,14 @@
 <body>
 	<div class="wrapper">
 		<div class="first">
-			<div class="dropbox" id="dropbox">Drop file here </div>
-			<input class="inputfile" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf">
+			<div class="dropbox" id="dropbox">Drop file here or: 
+				<label for="input">Choose a file</label> 
+				<input class="inputfile" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf">
+			</div>
 		</div>
 	<!--   	<button id="getdata" onclick="getData()">Get data</button>    
 		<button id="uploadpdf" onclick="uploadPdf()">Upload to docparser</button> -->
-		<form id="form" class="second" action="" >
+		<form id="form" class="second" action="" target="_blank">
 			<label for="fileNum">File number: </label>
 			<input id=fileNum type="text" name="fileNum">
 			<label for="currentStatus">Current Status: </label>
@@ -20,13 +22,16 @@
 			<label for="deliveryDate">Delivery date: </label>
 			<input id="deliveryDate" type="text" name="deliveryDate">
 			<label for="newStatus">New status: </label>
-			<select id="newStatus" name="newStatus">
+			<select class="newStatus" name="newStatus" id="newStatus" onchange="updateStatus(this.options)">
 				<option value="option1">Status 1</option>
 				<option value="option2">Status 2</option>
 				<option value="option3">Status 3</option>
 			</select>				
 			<label for="dueDate">Due date: </label>
-			<select id="selectDates"></select>		
+			<div class="due">
+				<select id="selectDates" name="dueDate"></select>
+				<input class="newDate" name ="dueNewDate" id="newDate" type="date" onchange="newDueDate(this)">		
+			</div>
 			<input class="last" type="submit" value="Submit">
 		</form>
 
@@ -34,6 +39,7 @@
 	</div>
 
 	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="helper.js"></script>
 
 </body>
 </html>
