@@ -1,4 +1,4 @@
-#dropbox {
+.dropbox {
 	width: 300px;
 	height: 150px;
 	border: 2px dashed;
@@ -6,25 +6,54 @@
 	text-align: center;
 }
 
-#first {
-	float: left;
+embed {
+	border: 2px solid;
+	width: 100%;
+	height: 1000px;
 }
 
-#form {
-	border: 2px ;
-	margin-left: 350px;
-	margin-top: 50px;
+input, select {
+	width: 120px;
+	align-self: center;
 }
 
-#sec1 {
-	float: left;
-	margin-bottom: 20px;
+label {
+	align-self: center;
+	justify-self: right;
 }
 
-#sec2 {
-	float: left;
+.wrapper {
+	display: grid;
+	grid-template-columns: 300px 1fr;
+	grid-gap: 10px;
 }
 
-#selectDates, #deliveryDate, #fileNum, #currentStatus, #newStatus, #dueDate {
-	width: 110px;
+.first {
+	grid-column: 1/2;
+	grid-row: 1;
+}
+
+.second {
+	grid-column: 2/3;
+	grid-row: 1;
+	display: grid;
+	grid-template-columns: repeat(4, 150px);
+}
+
+.third {
+	grid-column: 1/3;
+	grid-row: 2;
+}
+
+.last {
+	grid-column: 4/5;
+	grid-row: 3;
+}
+
+#selectDates {
+	background-color: hotpink;
+}
+
+#newStatus {
+	background-color: lawngreen;
 }

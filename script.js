@@ -49,8 +49,7 @@ function getParsedData() {
   var result = this.response;
 
   if (result.error != undefined) {
-    document.getElementById('status').innerHTML = result.error;
-    document.getElementById('parsedata').innerHTML = '';
+    console.log('Not parsed yet');
     return;
   }
 
@@ -95,10 +94,6 @@ function getParsedData() {
     }  
 }
 
-function parsingProgress() {
-  console.log(this.response);
-}
-
 function uploadEnd() {
   console.log(this.response);
   var result = this.response;
@@ -111,7 +106,6 @@ function getData() {
   var url = `https://api.docparser.com/v1/results/${parser_id}/${document_id}`;
   var req = new XMLHttpRequest();
   req.addEventListener("loadend", getParsedData);
-  //req.addEventListener("progress", parsingProgress);
   req.open('GET', url, true);
   req.responseType = 'json';
   req.setRequestHeader("Authorization", "Basic " + user);
@@ -135,6 +129,5 @@ function uploadPdf() {
 function resetFields() {
   document.getElementById('fileNum').value = "";
   document.getElementById('deliveryDate').value = "";
-  document.getElementById('dueDate').value = "";
   document.getElementById('selectDates').innerHTML = "";
 }
