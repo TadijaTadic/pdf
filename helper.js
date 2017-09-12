@@ -5,6 +5,7 @@ dropbox.addEventListener("dragenter", dragenter, false);
 dropbox.addEventListener("dragover", dragover, false);
 dropbox.addEventListener("drop", drop, false);
 pdfText.addEventListener("mouseup", getSelectedText, false);
+pdfText.addEventListener("mouseout", getSelectedText, false);
 
 function dragenter(e) {
     e.stopPropagation();
@@ -33,7 +34,7 @@ function drop(e) {
 var mySelection;
 
 function getSelectedText() {
-    mySelection = this.value.substring(this.selectionStart, this.selectionEnd);
+    mySelection = window.getSelection().toString();
 }
 
 function addComment() {
