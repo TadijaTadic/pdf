@@ -9,8 +9,10 @@ function handleFiles(files) {
   resetFields();
   selectedFile = files[0];
   fileUrl = URL.createObjectURL(selectedFile);
-  var el = document.getElementById('pdf');
+  var el = document.getElementById('frame');
   el.src = fileUrl;
+  el.hidden = false;
+  document.getElementById('pdfText').hidden = true;
 
   if (uploadedDoucuments.getItem(selectedFile.name) != undefined) {
     getData();
@@ -58,6 +60,7 @@ function getParsedData() {
   var date1 = result[0].ep__delivery_date_1;
   var date2 = result[0].ep__delivery_date_2;
   var due = result[0].office_action_date;
+  var text = result[0].whole_text;
   var id_number = number != null ? number.number : undefined;
   var delivery_date1 = date1 != null ? date1.formatted : undefined;
   var delivery_date2 = date2 != null ? date2.formatted : undefined;
@@ -72,23 +75,26 @@ function getParsedData() {
     //document.getElementById('form').deliveryDate.value = `${delivery_date[2]}-${delivery_date[1]}-${delivery_date[0]}`;
   }
   if (due_date != null) {
-      if (!Array.isArray(due_date)) {
+    if (!Array.isArray(due_date)) {
+      var select = document.getElementById('selectDates');
+      var options = document.createElement('option');
+      options.value = due_date.formatted;
+      options.textContent = due_date.formatted;
+      select.appendChild(options);
+    }
+    else {
+      due_date.forEach(function(element, index) {
         var select = document.getElementById('selectDates');
         var options = document.createElement('option');
-        options.value = due_date.formatted;
-        options.textContent = due_date.formatted;
+        options.value = element.formatted;
+        options.textContent = element.formatted;
         select.appendChild(options);
-      }
-      else {
-        due_date.forEach(function(element, index) {
-          var select = document.getElementById('selectDates');
-          var options = document.createElement('option');
-          options.value = element.formatted;
-          options.textContent = element.formatted;
-          select.appendChild(options);
-        });
-      }
-    }  
+      });
+    }
+  }
+  if (text != null) {
+    document.getElementById('pdfText').textContent = text;
+  }  
 }
 
 function uploadEnd() {

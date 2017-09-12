@@ -11,16 +11,16 @@
 				<label for="input">Choose a file</label> 
 				<input class="inputfile" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf">
 			</div>
-			  	<!-- <button id="getdata" onclick="getData()">Get data</button>    
-				<button id="uploadpdf" onclick="uploadPdf()">Upload to docparser</button> -->
+			  	<!-- <button id="getdata" onclick="getData()">Get data</button>     -->
+				<!-- <button id="uploadpdf" onclick="uploadPdf()">Upload to docparser</button> -->
 		</div>
 		<form id="form" class="second" action="" target="_blank">
 			<label for="fileNum">File number: </label>
-			<input id=fileNum type="text" name="fileNum" readonly>
+			<input id=fileNum type="text" name="fileNum">
 			<label for="currentStatus">Current Status: </label>
-			<input id="currentStatus" type="text" name="currentStatus" value="Status 1" readonly>
+			<input id="currentStatus" type="text" name="currentStatus" value="Status 1">
 			<label for="deliveryDate">Delivery date: </label>
-			<input id="deliveryDate" type="text" name="deliveryDate" readonly>
+			<input id="deliveryDate" type="text" name="deliveryDate">
 			<label for="newStatus">New status: </label>
 			<select class="newStatus" name="newStatus" id="newStatus" onchange="updateStatus(this.options)">
 				<option value="option1">Status 1</option>
@@ -34,8 +34,19 @@
 			</div>
 			<input class="last" type="submit" value="Submit">
 		</form>
-
-		<embed class="third" id="pdf" type="application/pdf" />
+		<div>
+			<textarea rows="10" cols="40" id="commentText">Comment here</textarea>
+			<button id="btnComment" onclick="addComment()">Add</button>
+		</div>
+		<div class="chooseView">
+			<button onclick="originalFileView()" >Original file</button>
+			<button onclick="proccesedFileView()">Proccesed file</button>
+		</div>
+		<div class="third">
+			<iframe hidden id="frame" src=""></iframe>
+			<textarea hidden class="text" id="pdfText" >Pdf text</textarea>
+			<!-- <embed class="pdf" id="pdf" type="application/pdf" hidden/> -->
+		</div>
 	</div>
 
 	<script type="text/javascript" src="script.js"></script>
