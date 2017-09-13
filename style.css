@@ -4,6 +4,8 @@
 	border: 2px dashed;
 	line-height: 150px;
 	text-align: center;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 80%;
 }
 
 iframe {
@@ -33,7 +35,7 @@ label {
 
 .wrapper {
 	display: grid;
-	grid-template-columns: 300px 600px 400px;
+	grid-template-columns: 300px 650px 400px;
 	grid-gap: 8px;
 }
 
@@ -71,12 +73,22 @@ label {
 	grid-row: 1;
 	width: 1000px;
 	height: 1000px;
-	z-index: 1;
+	/* z-index: 1; */
 }
 
 .last {
 	grid-column: 4/5;
 	grid-row: 3;
+
+	color: #FFF;
+	background-color: black;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-weight: bold;
+	font-size: 80%;
+	padding: 6px;
+	cursor: pointer;
+	width: 100px;
+
 }
 
 #selectDates {
@@ -88,11 +100,37 @@ label {
 }
 
 .inputfile {
-	opacity: 0;
+	display: none;
 }
 
 label[for="input"] {
-	padding: 0.5em;
-	background-color: greenyellow;
-	cursor: pointer;
+	background: green;
+	border-radius: 4px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 90%;
+	color: #FFF;
+	padding: 8px 12px;
+	cursor: pointer; 
+}
+
+form > label {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 80%;
+}
+
+form > input, form >select {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 80%;
+}
+
+#popup > button {
+	width: 120px;
+}
+
+#popup {
+	position: absolute;
+	width: 200px;
+	height: 100px;
+	border: 1px solid grey;
+	background: white;
 }

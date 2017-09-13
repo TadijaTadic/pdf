@@ -40,14 +40,23 @@
 			<button id="btnComment" onclick="addComment()">Add</button>
 		</div>
 		<div class="chooseView">
-			<button onclick="originalFileView()" >Original file</button>
-			<button onclick="proccesedFileView()">Proccesed file</button>
+			<br>
+			<br>
+			<button hidden id="btnOriginal" onclick="originalFileView()" >Original file</button>
+			<button hidden id="btnProcessed" onclick="proccesedFileView()">Proccesed file</button>
 		</div>
 		<div class="third">
 			<iframe hidden id="frame" src=""></iframe>
 			<textarea hidden class="text" id="pdfText" >Pdf text</textarea>
+			
 			<!-- <embed class="pdf" id="pdf" type="application/pdf" hidden/> -->
 		</div>
+	</div>
+	<div id="popup" hidden>
+		<button onclick="setData('fileNum')">File number</button><br>
+		<button onclick="setData('deliveryDate')">Delivery date</button><br>
+		<button onclick="setData('currentStatus')">Current status</button><br>
+		<button onclick="setData('commentText')">Comment</button><br>
 	</div>
 
 	<script type="text/javascript" src="script.js"></script>

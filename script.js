@@ -13,6 +13,8 @@ function handleFiles(files) {
   el.src = fileUrl;
   el.hidden = false;
   document.getElementById('pdfText').hidden = true;
+  document.getElementById('btnOriginal').hidden = false;
+  document.getElementById('btnProcessed').hidden = false;
 
   if (uploadedDoucuments.getItem(selectedFile.name) != undefined) {
     getData();

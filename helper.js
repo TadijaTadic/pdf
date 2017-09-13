@@ -1,11 +1,16 @@
 var dropbox = document.getElementById('dropbox');
 var pdfText = document.getElementById('pdfText');
+var popup = document.getElementById('popup');
 
 dropbox.addEventListener("dragenter", dragenter, false);
 dropbox.addEventListener("dragover", dragover, false);
 dropbox.addEventListener("drop", drop, false);
 pdfText.addEventListener("mouseup", getSelectedText, false);
 pdfText.addEventListener("mouseout", getSelectedText, false);
+pdfText.addEventListener("contextmenu", openPopup, false);
+pdfText.addEventListener("click", function(){
+    popup.hidden = true;
+})
 
 function dragenter(e) {
     e.stopPropagation();
@@ -33,8 +38,25 @@ function drop(e) {
 
 var mySelection;
 
-function getSelectedText() {
+function getSelectedText(e) {
     mySelection = window.getSelection().toString();
+}
+
+function openPopup(e) {
+    e.preventDefault();
+    var d = document.getElementById('popup');
+    if (mySelection != '') {
+        d.hidden = false;
+        d.style.left = e.screenX+'px';
+        d.style.top = e.screenY-50+'px';
+    }
+    else d.hidden = true;
+}
+
+function setData(field) {
+    document.getElementById(field).value = mySelection;
+    popup.hidden = true;
+    
 }
 
 function addComment() {
