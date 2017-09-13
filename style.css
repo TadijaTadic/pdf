@@ -96,7 +96,7 @@ label {
 }
 
 #newStatus {
-	background-color: lawngreen;
+	background-color: #47FC00;
 }
 
 .inputfile {
@@ -124,13 +124,15 @@ form > input, form >select {
 }
 
 #popup > button {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 80%;
 	width: 120px;
 }
 
 #popup {
 	position: absolute;
 	width: 200px;
-	height: 100px;
+	height: 120px;
 	border: 1px solid grey;
 	background: white;
 }

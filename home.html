@@ -36,8 +36,8 @@
 			<input class="last" type="submit" value="Submit">
 		</form>
 		<div>
-			<textarea rows="10" cols="40" id="commentText">Comment here</textarea>
-			<button id="btnComment" onclick="addComment()">Add</button>
+			<label for="commentText">Comment: </label><br>
+			<textarea rows="10" cols="40" id="commentText"></textarea>
 		</div>
 		<div class="chooseView">
 			<br>
@@ -55,6 +55,7 @@
 	<div id="popup" hidden>
 		<button onclick="setData('fileNum')">File number</button><br>
 		<button onclick="setData('deliveryDate')">Delivery date</button><br>
+		<!-- <button onclick="setData('')">Delivery date</button><br> -->
 		<button onclick="setData('currentStatus')">Current status</button><br>
 		<button onclick="setData('commentText')">Comment</button><br>
 	</div>

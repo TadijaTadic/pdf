@@ -90,7 +90,7 @@ function resetFields() {
     document.getElementById('selectDates').innerHTML = "";
     document.getElementById('newDate').value = "";
     document.getElementById('pdfText').textContent = "";
-    document.getElementById('commentText').textContent = "Comment here";
+    document.getElementById('commentText').textContent = "";
 }
 
 function newDueDate(obj) {
