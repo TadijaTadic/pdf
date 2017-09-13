@@ -88,7 +88,6 @@ function resetFields() {
     document.getElementById('fileNum').value = "";
     document.getElementById('deliveryDate').value = "";
     document.getElementById('selectDates').innerHTML = "";
-    document.getElementById('newDate').value = "";
     document.getElementById('pdfText').textContent = "";
     document.getElementById('commentText').textContent = "";
 }

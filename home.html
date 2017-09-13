@@ -8,15 +8,17 @@
 	<div class="wrapper">
 		<div class="first">
 			<div class="dropbox" id="dropbox">
-				Drop file here or:
-				<label for="input">Choose a file</label> 
-				<input class="inputfile" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf">
+				<span>
+					Drop file here or:
+					<label for="input">Choose a file</label> 
+					<input class="inputfile" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf">
+				</span>
 			</div>
 			  	<!-- <button id="getdata" onclick="getData()">Get data</button>     -->
 				<!-- <button id="uploadpdf" onclick="uploadPdf()">Upload to docparser</button> -->
 		</div>
 		<form id="form" class="second" action="" target="_blank">
-			<label for="fileNum">File number: </label>
+			<label for="fileNum">File number: </label>		
 			<input id=fileNum type="text" name="fileNum">
 			<label for="currentStatus">Current Status: </label>
 			<input id="currentStatus" type="text" name="currentStatus" value="Status 1">
@@ -27,18 +29,16 @@
 				<option value="option1">Status 1</option>
 				<option value="option2">Status 2</option>
 				<option value="option3">Status 3</option>
-			</select>				
+			</select>
 			<label for="dueDate">Due date: </label>
-			<div class="due">
-				<select id="selectDates" name="dueDate"></select>
-				<input class="newDate" name ="dueNewDate" id="newDate" type="date" onchange="newDueDate(this)">		
-			</div>
+			<input class="" name="dueDate" id="dueDate" type="text">
+			<label for="commentText">Comment: </label>
+			<!-- <input type="text" name="commentText" id="commentText"> -->
+			<textarea rows="5" cols="10" name="commentText" id="commentText"></textarea>
+			<label for="sugestions">Sugestions: </label>
+			<select id="selectDates" name="sugestions"></select>
 			<input class="last" type="submit" value="Submit">
 		</form>
-		<div>
-			<label for="commentText">Comment: </label><br>
-			<textarea rows="10" cols="40" id="commentText"></textarea>
-		</div>
 		<div class="chooseView">
 			<br>
 			<br>
@@ -55,7 +55,7 @@
 	<div id="popup" hidden>
 		<button onclick="setData('fileNum')">File number</button><br>
 		<button onclick="setData('deliveryDate')">Delivery date</button><br>
-		<!-- <button onclick="setData('')">Delivery date</button><br> -->
+		<button onclick="setData('dueDate')">Due date</button><br>
 		<button onclick="setData('currentStatus')">Current status</button><br>
 		<button onclick="setData('commentText')">Comment</button><br>
 	</div>
