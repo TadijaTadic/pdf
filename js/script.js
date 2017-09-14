@@ -20,8 +20,9 @@ function handleFiles(files) {
     getData();
   }
   else {
-    //uploadPdf();
+    uploadPdf();
   }
+  //uploadPdf();
 }
 
 //GET https://api.docparser.com/v1/results/<PARSER_ID>/<DOCUMENT_ID>
@@ -50,14 +51,23 @@ function uploadPdf() {
   req.send(formData);
 }
 
+var counter = 0;
+
 function getParsedData() {
   var result = this.response;
 
   if (result.error != undefined) {
-    console.log('Not parsed yet');
-    return;
+    if (counter >= 10) {
+      console.log('Parsing is taking too long')
+      return;
+    } else {
+      counter++;
+      console.log(counter);
+      window.setTimeout(getData, 2000);
+      return;
+    }    
   }
-
+  counter = 0;
   var number = result[0].ep__tracking_number;
   var date1 = result[0].ep__delivery_date_1;
   var date2 = result[0].ep__delivery_date_2;
@@ -73,8 +83,6 @@ function getParsedData() {
   if (delivery_date1 != undefined || delivery_date2 != undefined) {
     var delivery_date = delivery_date1 != undefined ? delivery_date1 : delivery_date2;
     document.getElementById('form').deliveryDate.value = delivery_date;
-    //delivery_date = delivery_date.split('.');
-    //document.getElementById('form').deliveryDate.value = `${delivery_date[2]}-${delivery_date[1]}-${delivery_date[0]}`;
   }
   if (due_date != null) {
     if (!Array.isArray(due_date)) {
@@ -100,7 +108,7 @@ function getParsedData() {
 }
 
 function uploadEnd() {
-  console.log(this.response);
   var result = this.response;
   uploadedDoucuments.setItem(selectedFile.name, result.id);
+  window.setTimeout(getData, 2000);
 }

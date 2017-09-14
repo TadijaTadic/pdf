@@ -15,8 +15,6 @@
 				<input class="" style="display: none;" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf">
 			</div>
 		</div>
-						<!-- <button id="getdata" onclick="getData()">Get data</button>    
-					  <button id="uploadpdf" onclick="uploadPdf()">Upload to docparser</button> -->
 		<form id="form" class="second" action="" target="_blank">
 			<label for="fileNum">File number: </label>		
 			<input class="form-control" style="width: 150px;" id=fileNum type="text" name="fileNum">
@@ -42,6 +40,9 @@
 			<div class="chooseView">
 				<button class="btn btn-secondary btn-sm" hidden id="btnOriginal" onclick="originalFileView()" >Original file</button>
 				<button class="btn btn-secondary btn-sm" hidden id="btnProcessed" onclick="proccesedFileView()">Proccesed file</button>
+				<!-- <progress value="70" max="100">70 %</progress> -->
+				<!-- <button id="getdata" onclick="getData()">Get data</button>
+				<button id="uploadpdf" onclick="uploadPdf()">Upload to docparser</button> -->
 			</div>
 			<div class="third">
 				<iframe hidden id="frame" src=""></iframe>

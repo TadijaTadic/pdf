@@ -77,7 +77,6 @@ function updateDueDate(selectedObject) {
     var index= selectedObject.selectedIndex;
     var item = selectedObject[index].textContent;
     document.getElementById('dueDate').value = item;
-    console.log(selectedObject);
 }
 
 function resetFields() {
