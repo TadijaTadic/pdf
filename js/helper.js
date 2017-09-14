@@ -10,7 +10,10 @@ pdfText.addEventListener("mouseout", getSelectedText, false);
 pdfText.addEventListener("contextmenu", openPopup, false);
 pdfText.addEventListener("click", function(){
     popup.hidden = true;
-})
+});
+pdfText.addEventListener("blur", function(){
+    popup.hidden = true;
+});
 
 function dragenter(e) {
     e.stopPropagation();
@@ -47,8 +50,8 @@ function openPopup(e) {
     var d = document.getElementById('popup');
     if (mySelection != '') {
         d.hidden = false;
-        d.style.left = e.screenX+'px';
-        d.style.top = e.screenY-50+'px';
+        d.style.left = e.pageX+'px';
+        d.style.top = e.pageY+'px';
     }
     else d.hidden = true;
 }
@@ -59,16 +62,6 @@ function setData(field) {
     
 }
 
-function addComment() {
-    if (mySelection != undefined) {
-        document.getElementById('commentText').textContent = mySelection; 
-    }
-    else {
-        console.log('nothing selected');
-    }
-
-}
-
 function proccesedFileView() {
     document.getElementById('pdfText').hidden = false;
     document.getElementById('frame').hidden = true;
@@ -77,11 +70,14 @@ function proccesedFileView() {
 function originalFileView() {
     document.getElementById('pdfText').hidden = true;
     document.getElementById('frame').hidden = false;
+    popup.hidden = true;
 }
 
-function updateStatus(selectedObject) {
-    // var index = selectedObject.selectedIndex;
-    // console.log(selectedObject[index].textContent);
+function updateDueDate(selectedObject) {
+    var index= selectedObject.selectedIndex;
+    var item = selectedObject[index].textContent;
+    document.getElementById('dueDate').value = item;
+    console.log(selectedObject);
 }
 
 function resetFields() {

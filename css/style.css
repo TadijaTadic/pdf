@@ -1,0 +1,104 @@
+body {
+	padding-top: 20px;
+	padding-left: 10%;
+	padding-right: 30%;
+}
+
+.dropbox {
+	height: 200px;
+	border: 2px dashed gray;
+	text-align: center;
+
+	padding-top: 75px;
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: minmax(350px, auto) 1fr;
+	grid-gap: 10px;
+}
+
+.first {
+	grid-column: 1/2;
+	grid-row: 1;
+	align-self: center;
+}
+
+.second {
+	grid-column: 2/3;
+	grid-row: 1;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-auto-rows: minmax(50px, auto);
+	grid-gap: 5px;
+}
+
+form > label {
+	align-self: center;
+	justify-self: right;
+}
+
+form > input, select, textarea {
+	align-self: center;
+	
+	width: 150px;
+}
+
+form > input[type="submit"] {
+	grid-column: 4/5;
+	
+}
+
+.wrap {
+	grid-column: 1/3;
+	grid-row: 2/3;
+
+	width: 100%;
+	height: 1000px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+
+.chooseView {
+	grid-column: 1/3;
+	grid-row: 2;
+}
+
+.third {
+	grid-column: 1/3;
+	grid-row: 3;
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+iframe {
+	width: 100%;
+	height: 1000px;
+}
+
+.text {
+	grid-column: 1/2;
+	grid-row: 1;
+	width: 100%;
+	height: 1000px;
+}
+
+label[for="input"] {
+	background: green;
+	border-radius: 4px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 90%;
+	color: #FFF;
+	padding: 8px 12px;
+	cursor: pointer; 
+}
+
+#popup > button {
+	width: 120px;
+}
+
+#popup {
+	position: absolute;
+	/* border: 1px solid grey; */
+	background: white;
+}

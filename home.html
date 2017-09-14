@@ -2,66 +2,63 @@
 <html>
 <head>
 	<title>View pdf</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
 <body>
 	<div class="wrapper">
+		<!-- <div class="emptyLeft"></div> -->
 		<div class="first">
 			<div class="dropbox" id="dropbox">
-				<span>
-					Drop file here or:
-					<label for="input">Choose a file</label> 
-					<input class="inputfile" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf">
-				</span>
+				Drop file here or:
+				<label for="input">Choose a file</label> 
+				<input class="" style="display: none;" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf">
 			</div>
-			  	<!-- <button id="getdata" onclick="getData()">Get data</button>     -->
-				<!-- <button id="uploadpdf" onclick="uploadPdf()">Upload to docparser</button> -->
 		</div>
+						<!-- <button id="getdata" onclick="getData()">Get data</button>    
+					  <button id="uploadpdf" onclick="uploadPdf()">Upload to docparser</button> -->
 		<form id="form" class="second" action="" target="_blank">
 			<label for="fileNum">File number: </label>		
-			<input id=fileNum type="text" name="fileNum">
-			<label for="currentStatus">Current Status: </label>
-			<input id="currentStatus" type="text" name="currentStatus" value="Status 1">
+			<input class="form-control" style="width: 150px;" id=fileNum type="text" name="fileNum">
+			<label for="currentStatus">Status: </label>
+			<input class="form-control" style="width: 150px;" id="currentStatus" type="text" name="currentStatus">
 			<label for="deliveryDate">Delivery date: </label>
-			<input id="deliveryDate" type="text" name="deliveryDate">
+			<input class="form-control" style="width: 150px;" id="deliveryDate" type="text" name="deliveryDate">
 			<label for="newStatus">New status: </label>
-			<select class="newStatus" name="newStatus" id="newStatus" onchange="updateStatus(this.options)">
+			<select class="form-control" style="width: 150px;" name="newStatus" id="newStatus">
 				<option value="option1">Status 1</option>
 				<option value="option2">Status 2</option>
 				<option value="option3">Status 3</option>
 			</select>
 			<label for="dueDate">Due date: </label>
-			<input class="" name="dueDate" id="dueDate" type="text">
+			<input class="form-control" style="width: 150px;" name="dueDate" id="dueDate" type="text">
 			<label for="commentText">Comment: </label>
-			<!-- <input type="text" name="commentText" id="commentText"> -->
-			<textarea rows="5" cols="10" name="commentText" id="commentText"></textarea>
+			<textarea class="form-control" style="width: 150px;" name="commentText" id="commentText"></textarea>
 			<label for="sugestions">Sugestions: </label>
-			<select id="selectDates" name="sugestions"></select>
-			<input class="last" type="submit" value="Submit">
+			<select class="form-control" style="width: 150px;" id="selectDates" name="sugestions" onchange="updateDueDate(this.options)"></select>
+			<input  class="btn btn-primary" type="submit" value="Submit">
 		</form>
-		<div class="chooseView">
-			<br>
-			<br>
-			<button hidden id="btnOriginal" onclick="originalFileView()" >Original file</button>
-			<button hidden id="btnProcessed" onclick="proccesedFileView()">Proccesed file</button>
-		</div>
-		<div class="third">
-			<iframe hidden id="frame" src=""></iframe>
-			<textarea hidden class="text" id="pdfText" >Pdf text</textarea>
-			
-			<!-- <embed class="pdf" id="pdf" type="application/pdf" hidden/> -->
+		<div class="wrap">
+			<div class="chooseView">
+				<button class="btn btn-secondary btn-sm" hidden id="btnOriginal" onclick="originalFileView()" >Original file</button>
+				<button class="btn btn-secondary btn-sm" hidden id="btnProcessed" onclick="proccesedFileView()">Proccesed file</button>
+			</div>
+			<div class="third">
+				<iframe hidden id="frame" src=""></iframe>
+				<textarea hidden class="text" id="pdfText">Pdf text</textarea>
+			</div>
 		</div>
 	</div>
+	<!-- <div class="emptyright"></div> -->
 	<div id="popup" hidden>
-		<button onclick="setData('fileNum')">File number</button><br>
-		<button onclick="setData('deliveryDate')">Delivery date</button><br>
-		<button onclick="setData('dueDate')">Due date</button><br>
-		<button onclick="setData('currentStatus')">Current status</button><br>
-		<button onclick="setData('commentText')">Comment</button><br>
+		<button class="btn btn-outline-primary btn-sm" onclick="setData('fileNum')">File number</button><br>
+		<button class="btn btn-outline-primary btn-sm" onclick="setData('deliveryDate')">Delivery date</button><br>
+		<button class="btn btn-outline-primary btn-sm" onclick="setData('dueDate')">Due date</button><br>
+		<button class="btn btn-outline-primary btn-sm" onclick="setData('commentText')">Comment</button><br>
 	</div>
 
-	<script type="text/javascript" src="script.js"></script>
-	<script type="text/javascript" src="helper.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/helper.js"></script>
 
 </body>
 </html>
