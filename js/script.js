@@ -4,6 +4,7 @@ var uploadedDoucuments = window.localStorage;
 
 var user = 'dc8e7c4e42eb80daa06cbf024f9898671c33f62d';
 var parser_id = 'oofdtinkseah';
+var intervalId;
 
 function handleFiles(files) {
   resetFields();
@@ -15,14 +16,14 @@ function handleFiles(files) {
   document.getElementById('pdfText').hidden = true;
   document.getElementById('btnOriginal').hidden = false;
   document.getElementById('btnProcessed').hidden = false;
+  intervalId = window.setInterval(progressIncresse, 2000);
 
-  if (uploadedDoucuments.getItem(selectedFile.name) != undefined) {
-    getData();
-  }
-  else {
-    uploadPdf();
-  }
-  //uploadPdf();
+  // if (uploadedDoucuments.getItem(selectedFile.name) != undefined) {
+  //   getData();
+  // }
+  // else {
+  //   uploadPdf();
+  // }
 }
 
 //GET https://api.docparser.com/v1/results/<PARSER_ID>/<DOCUMENT_ID>
@@ -57,15 +58,16 @@ function getParsedData() {
   var result = this.response;
 
   if (result.error != undefined) {
-    if (counter >= 10) {
-      console.log('Parsing is taking too long')
+    if (counter == 10) {
+      console.log('Parsing is taking too long');
+      counter = 0;
       return;
     } else {
       counter++;
       console.log(counter);
       window.setTimeout(getData, 2000);
       return;
-    }    
+    }   
   }
   counter = 0;
   var number = result[0].ep__tracking_number;
@@ -111,4 +113,16 @@ function uploadEnd() {
   var result = this.response;
   uploadedDoucuments.setItem(selectedFile.name, result.id);
   window.setTimeout(getData, 2000);
+}
+
+function progressIncresse() {
+  var pbar = document.getElementById('pbar');
+  var current = pbar.style.width;
+  if (counter == 10) {
+    clearInterval(intervalId);
+  }
+  var next = parseInt(current)+10;
+  var str = next.toString();
+  var final = str + '%';
+  pbar.style.width = final;
 }
