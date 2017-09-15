@@ -7,35 +7,35 @@
 </head>
 <body>
 	<div class="wrapper">
-		<!-- <div class="emptyLeft"></div> -->
-		<div class="first">
+		<form id="form" class="form" action="" target="_blank">
 			<div class="dropbox" id="dropbox">
 				Drop file here or:
 				<label for="input">Choose a file</label> 
 				<input class="" style="display: none;" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf">
 			</div>
-		</div>
-		<form id="form" class="second" action="" target="_blank">
-			<label for="fileNum">File number: </label>		
-			<input class="form-control" style="width: 150px;" id=fileNum type="text" name="fileNum">
-			<label for="currentStatus">Status: </label>
-			<input class="form-control" style="width: 150px;" id="currentStatus" type="text" name="currentStatus">
-			<label for="deliveryDate">Delivery date: </label>
-			<input class="form-control" style="width: 150px;" id="deliveryDate" type="text" name="deliveryDate">
-			<label for="newStatus">New status: </label>
-			<select class="form-control" style="width: 150px;" name="newStatus" id="newStatus">
-				<option value="option1">Status 1</option>
-				<option value="option2">Status 2</option>
-				<option value="option3">Status 3</option>
-			</select>
 			<label for="dueDate">Due date: </label>
 			<input class="form-control" style="width: 150px;" name="dueDate" id="dueDate" type="text">
 			<label for="commentText">Comment: </label>
-			<textarea class="form-control" style="width: 150px;" name="commentText" id="commentText"></textarea>
+			<textarea class="form-control" rows="7" style="width: 300px;" name="commentText" id="commentText"></textarea>
 			<label for="sugestions">Sugestions: </label>
 			<select class="form-control" style="width: 150px;" id="selectDates" name="sugestions" onchange="updateDueDate(this.options)"></select>
-			<input  class="btn btn-primary" type="submit" value="Submit">
+			<div class="subGrid">
+				<label for="fileNum" >File number: </label>		
+				<input class="form-control" style="width: 150px;" id=fileNum type="text" name="fileNum">
+				<label for="deliveryDate">Delivery date: </label>
+				<input class="form-control" style="width: 150px;" id="deliveryDate" type="text" name="deliveryDate">
+			</div>
+			<label for="currentStatus">Current Status: </label>
+			<input class="form-control" style="width: 150px; font-size: 90%;" id="currentStatus" type="text" name="currentStatus" value="National procedure">
+			<label for="newStatus">New status: </label>
+			<select class="form-control" style="width: 150px; font-size: 90%;" name="newStatus" id="newStatus">
+				<option value="option1">National procedure</option>
+				<option value="option2">National procedure - grandted</option>
+				<option value="option3">National procedure - declined</option>
+			</select>
+			<input class="btn btn-primary" type="submit" value="Submit" id="submit">
 		</form>
+
 		<div class="wrap">
 			<div class="chooseView">
 				<div id="parsingStatus">Parsing status: </div>
@@ -47,16 +47,15 @@
 				</div>
 				<button class="btn btn-secondary btn-sm" id="btnOriginal" onclick="originalFileView()" >Original file</button>
 				<button class="btn btn-secondary btn-sm" id="btnProcessed" onclick="proccesedFileView()">Proccesed file</button>
-				<!-- <button id="getdata" onclick="getData()">Get data</button>
-				<button id="uploadpdf" onclick="uploadPdf()">Upload to docparser</button> -->
 			</div>
+
 			<div class="third">
 				<iframe hidden id="frame" src=""></iframe>
 				<textarea hidden class="text" id="pdfText">Pdf text</textarea>
 			</div>
 		</div>
 	</div>
-	<!-- <div class="emptyright"></div> -->
+
 	<div id="popup" hidden>
 		<button class="btn btn-outline-primary btn-sm" onclick="setData('fileNum')">File number</button><br>
 		<button class="btn btn-outline-primary btn-sm" onclick="setData('deliveryDate')">Delivery date</button><br>

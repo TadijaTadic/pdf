@@ -1,56 +1,131 @@
 body {
 	padding-top: 20px;
 	padding-left: 10%;
-	padding-right: 10%;
-}
-
-.dropbox {
-	height: 200px;
-	border: 2px dashed gray;
-	text-align: center;
-
-	padding-top: 75px;
+	padding-right: 50%;
 }
 
 .wrapper {
 	display: grid;
-	grid-template-columns: minmax(350px, auto) 1fr;
-	grid-gap: 10px;
+	grid-template-columns: 1fr;
 }
 
-.first {
-	grid-column: 1/2;
-	grid-row: 1;
-	align-self: center;
-}
-
-.second {
-	grid-column: 2/3;
-	grid-row: 1;
+.form {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-auto-rows: minmax(50px, auto);
 	grid-gap: 5px;
 }
 
-form > label {
+.dropbox {
+	width: 300px;
+	height: 120px;
+	border: 2px dashed gray;
+	text-align: center;
+	padding-top: 40px;
+
+	grid-column: 1/2;
+	grid-row: 1/4;
+}
+
+label[for="dueDate"] {
+	grid-column: 2/3;
+	grid-row: 1/2;
+
+	align-self: left;
+}
+
+#dueDate {
+	grid-column: 3/4;
+	grid-row: 1/2;
+
+	align-self: left;
+}
+
+label[for="commentText"] {
+	grid-column: 4/5;
+	grid-row: 1/2;
+}
+
+#commentText {
+	grid-column: 4/5;
+	grid-row: 2/4;
+}
+
+label[for="sugestions"] {
+	grid-column: 2/3;
+	grid-row: 2/3;
+}
+
+#selectDates {
+	grid-column: 3/4;
+	grid-row: 2/3;
+}
+
+.subGrid {
+	grid-column: 1/2;
+	grid-row: 3/5;
+
+	display: grid;
+	grid-template: 1fr 1fr;
+	grid-gap: 5px;
+}
+
+label[for="fileNum"] {
+	grid-column: 1/2;
+	grid-row: 1/2;
+
 	align-self: center;
+}
+
+#fileNum {
+	grid-column: 2/3;
+	grid-row: 1/2;
+}
+
+label[for="deliveryDate"] {
+	grid-column: 1/2;
+	grid-row: 2/3;
+
+	align-self: center;
+}
+
+#deliveryDate {
+	grid-column: 2/3;
+	grid-row: 2/3;
+}
+
+label[for="currentStatus"] {
+	grid-column: 2/3;
+	grid-row: 3/4;
+}
+
+#currentStatus {
+	grid-column: 3/4;
+	grid-row: 3/4;
+}
+
+label[for="newStatus"] {
+	grid-column: 2/3;
+	grid-row: 4/5;
+}
+
+#newStatus {
+	grid-column: 3/4;
+	grid-row: 4/5;
+}
+
+#submit {
+	grid-column: 4/5;
+	grid-row: 4/5;
+
 	justify-self: right;
 }
 
-form > input, select, textarea {
+form > label, input, select {
 	align-self: center;
-	
-	width: 150px;
-}
-
-form > input[type="submit"] {
-	grid-column: 4/5;
-	
 }
 
 .wrap {
-	grid-column: 1/3;
+	grid-column: 1/5;
 	grid-row: 2/3;
 
 	width: 100%;
