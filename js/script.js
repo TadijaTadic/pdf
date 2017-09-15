@@ -59,19 +59,19 @@ function getParsedData() {
 
   if (result.error != undefined) {
     if (counter == 10) {
-      document.getElementById('parsingStatus').innerHTML += 'Parsing is taking too long.';
+      document.getElementById('parsingStatus').innerHTML = 'Parsing is taking too long.';
       counter = 0;
       return;
     } else {
       counter++;
-      document.getElementById('parsingStatus').innerHTML += 'Document is being parsed.';
+      document.getElementById('parsingStatus').innerHTML = 'Document is being parsed.';
       progressBar(counter*10);
       timeoutId = window.setTimeout(getData, 2000);
       return;
     }   
   }
   counter = 0;
-  document.getElementById('parsingStatus').innerHTML += 'File parsed.';
+  document.getElementById('parsingStatus').innerHTML = 'File parsed.';
   progressBar(100);
 
   var number = result[0].ep__tracking_number;
@@ -131,6 +131,6 @@ function progressBar(width) {
 function cancelGetData() {
   counter = 0;
   progressBar(0);
-  document.getElementById('parsingStatus').innerHTML += 'Operation canceled';
+  document.getElementById('parsingStatus').innerHTML = 'Operation canceled';
   clearTimeout(timeoutId);
 }
