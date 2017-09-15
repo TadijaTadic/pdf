@@ -12,7 +12,7 @@ pdfText.addEventListener("click", function(){
     popup.hidden = true;
 });
 pdfText.addEventListener("blur", function(){
-    popup.hidden = true;
+    //popup.hidden = true;
 });
 
 function dragenter(e) {
@@ -85,6 +85,7 @@ function resetFields() {
     document.getElementById('selectDates').innerHTML = "";
     document.getElementById('pdfText').textContent = "";
     document.getElementById('commentText').textContent = "";
+    document.getElementById('parsingStatus').innerHTML = "Parsing status: "
 }
 
 function newDueDate(obj) {

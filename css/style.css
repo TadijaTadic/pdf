@@ -102,3 +102,11 @@ label[for="input"] {
 	/* border: 1px solid grey; */
 	background: white;
 }
+
+.progressBar {
+	display: grid;
+	grid-template-columns: 90% 10%;
+}
+
+
+

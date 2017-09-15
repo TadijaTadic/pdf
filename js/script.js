@@ -16,14 +16,13 @@ function handleFiles(files) {
   document.getElementById('pdfText').hidden = true;
   document.getElementById('btnOriginal').hidden = false;
   document.getElementById('btnProcessed').hidden = false;
-  intervalId = window.setInterval(progressIncresse, 2000);
 
-  // if (uploadedDoucuments.getItem(selectedFile.name) != undefined) {
-  //   getData();
-  // }
-  // else {
-  //   uploadPdf();
-  // }
+  if (uploadedDoucuments.getItem(selectedFile.name) != undefined) {
+    getData();
+  }
+  else {
+    uploadPdf();
+  }
 }
 
 //GET https://api.docparser.com/v1/results/<PARSER_ID>/<DOCUMENT_ID>
@@ -53,23 +52,28 @@ function uploadPdf() {
 }
 
 var counter = 0;
+var timeoutId;
 
 function getParsedData() {
   var result = this.response;
 
   if (result.error != undefined) {
     if (counter == 10) {
-      console.log('Parsing is taking too long');
+      document.getElementById('parsingStatus').innerHTML = 'Parsing is taking too long.';
       counter = 0;
       return;
     } else {
       counter++;
-      console.log(counter);
-      window.setTimeout(getData, 2000);
+      document.getElementById('parsingStatus').innerHTML = 'Document is being parsed.';
+      progressBar(counter*10);
+      timeoutId = window.setTimeout(getData, 2000);
       return;
     }   
   }
   counter = 0;
+  document.getElementById('parsingStatus').innerHTML = 'File parsed.';
+  progressBar(100);
+
   var number = result[0].ep__tracking_number;
   var date1 = result[0].ep__delivery_date_1;
   var date2 = result[0].ep__delivery_date_2;
@@ -115,14 +119,18 @@ function uploadEnd() {
   window.setTimeout(getData, 2000);
 }
 
-function progressIncresse() {
+function progressBar(width) {
   var pbar = document.getElementById('pbar');
   var current = pbar.style.width;
-  if (counter == 10) {
-    clearInterval(intervalId);
-  }
-  var next = parseInt(current)+10;
+  var next = width;
   var str = next.toString();
   var final = str + '%';
   pbar.style.width = final;
+}
+
+function cancelGetData() {
+  counter = 0;
+  progressBar(0);
+  document.getElementById('parsingStatus').innerHTML = 'Operation canceled';
+  clearTimeout(timeoutId);
 }

@@ -38,11 +38,15 @@
 		</form>
 		<div class="wrap">
 			<div class="chooseView">
-				<button class="btn btn-secondary btn-sm" hidden id="btnOriginal" onclick="originalFileView()" >Original file</button>
-				<button class="btn btn-secondary btn-sm" hidden id="btnProcessed" onclick="proccesedFileView()">Proccesed file</button>
-				<div class="progress" >
-					<div id="pbar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-				  </div>
+				<div id="parsingStatus">Parsing status: </div>
+				<div class="progressBar">
+					<div class="progress" >
+						<div id="pbar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%; height: 30px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+					<button class="btn btn-link btn-sm" onclick="cancelGetData()">Cancel</button>
+				</div>
+				<button class="btn btn-secondary btn-sm" id="btnOriginal" onclick="originalFileView()" >Original file</button>
+				<button class="btn btn-secondary btn-sm" id="btnProcessed" onclick="proccesedFileView()">Proccesed file</button>
 				<!-- <button id="getdata" onclick="getData()">Get data</button>
 				<button id="uploadpdf" onclick="uploadPdf()">Upload to docparser</button> -->
 			</div>
