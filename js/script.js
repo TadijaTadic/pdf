@@ -134,3 +134,43 @@ function cancelGetData() {
   document.getElementById('parsingStatus').innerHTML = 'Operation canceled';
   clearTimeout(timeoutId);
 }
+
+function sendData(form) {
+  var fileNumber = form.elements.fileNum.value;
+  var deliveryDate = form.elements.deliveryDate.value.trim();
+  var dueDate = form.elements.dueDate.value.trim();
+  var commentText = form.elements.commentText.value;
+  var status = parseInt(form.elements.newStatus.value, 10);
+
+  var parts = deliveryDate.split(".");
+  deliveryDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
+  parts = dueDate.split(".");
+  dueDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
+
+  var data = JSON.stringify({
+    "Code": fileNumber,
+    "DeliveryDate": deliveryDate,
+    "Date": dueDate,
+    "Note": commentText,
+    "OrderStatusId": status, 
+    "UserId": 7364
+  });
+  var url = "http://order.demo.reqster.com/api/Order";
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("SkipAuth", "true");
+  xhr.send(data);
+
+  xhr.onreadystatechange = function() {
+    if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+      alert("Your data is successfully sent.");
+      resetFields();
+    }
+    if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 400) {
+      var result = xhr.responseText;
+      alert(xhr.responseText);
+    }
+  }
+}

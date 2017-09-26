@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<form id="form" class="form" action="" target="_blank">
+		<form id="form" class="form" action="" method="POST" target="_blank" onsubmit="event.preventDefault(); sendData(form);">
 			<div class="dropbox" id="dropbox">
 				Drop file here or:
 				<label for="input">Choose a file</label> 
@@ -29,9 +29,9 @@
 			<input class="form-control" style="width: 150px; font-size: 90%;" id="currentStatus" type="text" name="currentStatus" value="National procedure">
 			<label for="newStatus">New status: </label>
 			<select class="form-control" style="width: 150px; font-size: 90%;" name="newStatus" id="newStatus">
-				<option value="option1">National procedure</option>
-				<option value="option2">National procedure - grandted</option>
-				<option value="option3">National procedure - declined</option>
+				<option value="1">National procedure</option>
+				<option value="2">National procedure - granted</option>
+				<option value="4">National procedure - declined</option>
 			</select>
 			<input class="btn btn-primary" type="submit" value="Submit" id="submit">
 		</form>
