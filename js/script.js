@@ -139,6 +139,7 @@ function sendData(form) {
   var fileNumber = form.elements.fileNum.value;
   var deliveryDate = form.elements.deliveryDate.value.trim();
   var dueDate = form.elements.dueDate.value.trim();
+  var date = new Date();
   var commentText = form.elements.commentText.value;
   var status = parseInt(form.elements.newStatus.value, 10);
 
@@ -146,13 +147,15 @@ function sendData(form) {
   deliveryDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
   parts = dueDate.split(".");
   dueDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
+  var today = formatDate(date);
 
   var data = JSON.stringify({
     "Code": fileNumber,
     "DeliveryDate": deliveryDate,
-    "Date": dueDate,
+    "Date": today,
     "Note": commentText,
-    "OrderStatusId": status, 
+    "OrderStatusId": status,
+    "CustomData": { "dueDate": dueDate }, 
     "UserId": 7364
   });
   var url = "http://order.demo.reqster.com/api/Order";
@@ -173,4 +176,17 @@ function sendData(form) {
       alert(xhr.responseText);
     }
   }
+}
+
+function formatDate(date) {
+  var dd = date.getDate();
+  var mm = date.getMonth()+1;
+  var yyyy = date.getFullYear();
+  if(dd<10) {
+    dd = '0'+dd
+  } 
+  if(mm<10) {
+      mm = '0'+mm
+  } 
+  return yyyy + '.' + mm + '.' + dd;
 }

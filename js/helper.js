@@ -82,9 +82,10 @@ function updateDueDate(selectedObject) {
 function resetFields() {
     document.getElementById('fileNum').value = "";
     document.getElementById('deliveryDate').value = "";
+    document.getElementById('dueDate').value = "";
     document.getElementById('selectDates').innerHTML = "";
     document.getElementById('pdfText').textContent = "";
-    document.getElementById('commentText').textContent = "";
+    document.getElementById('commentText').value = "";
     document.getElementById('parsingStatus').innerHTML = "Parsing status: "
 }
 
