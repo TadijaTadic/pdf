@@ -6,16 +6,16 @@ var user = 'dc8e7c4e42eb80daa06cbf024f9898671c33f62d';
 var parser_id = 'oofdtinkseah';
 var intervalId;
 
-function handleFiles(files) {
+function openForm() {
   resetFields();
-  selectedFile = files[0];
+  selectedFile = fileObject;
   fileUrl = URL.createObjectURL(selectedFile);
-  var el = document.getElementById('frame');
+  var el = document.getElementById("frame");
   el.src = fileUrl;
   el.hidden = false;
-  document.getElementById('pdfText').hidden = true;
-  document.getElementById('btnOriginal').hidden = false;
-  document.getElementById('btnProcessed').hidden = false;
+  document.getElementById("pdfText").hidden = true;
+  document.getElementById("btnOriginal").hidden = false;
+  document.getElementById("btnProcessed").hidden = false;
 
   if (uploadedDoucuments.getItem(selectedFile.name) != undefined) {
     getData();
@@ -23,6 +23,7 @@ function handleFiles(files) {
   else {
     uploadPdf();
   }
+  
 }
 
 //GET https://api.docparser.com/v1/results/<PARSER_ID>/<DOCUMENT_ID>
@@ -92,25 +93,29 @@ function getParsedData() {
   }
   if (due_date != null) {
     if (!Array.isArray(due_date)) {
-      var select = document.getElementById('selectDates');
-      var options = document.createElement('option');
-      options.value = due_date.formatted;
-      options.textContent = due_date.formatted;
-      select.appendChild(options);
+      // var select = document.getElementById('selectDates');
+      // var options = document.createElement('option');
+      // options.value = due_date.formatted;
+      // options.textContent = due_date.formatted;
+      // select.appendChild(options);
+      document.getElementById('dueDate').value = due_date.formatted;
     }
     else {
       due_date.forEach(function(element, index) {
-        var select = document.getElementById('selectDates');
-        var options = document.createElement('option');
-        options.value = element.formatted;
-        options.textContent = element.formatted;
-        select.appendChild(options);
+        // var select = document.getElementById('selectDates');
+        // var options = document.createElement('option');
+        // options.value = element.formatted;
+        // options.textContent = element.formatted;
+        //select.appendChild(options);
       });
+      document.getElementById('dueDate').value = due_date[0].formatted;
     }
   }
   if (text != null) {
     document.getElementById('pdfText').textContent = text;
-  }  
+  }
+
+  window.localStorage.setItem(`${selectedFile.name}+"ID"`, id_number);
 }
 
 function uploadEnd() {
@@ -170,6 +175,7 @@ function sendData(form) {
     if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
       alert("Your data is successfully sent.");
       resetFields();
+      goBack();
     }
     if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 400) {
       var result = xhr.responseText;

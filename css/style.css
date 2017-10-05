@@ -1,127 +1,12 @@
 body {
 	padding-top: 20px;
 	padding-left: 10%;
-	padding-right: 50%;
+	padding-right: 40%;
 }
 
 .wrapper {
 	display: grid;
-	grid-template-columns: 1fr;
-}
-
-.form {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-gap: 5px;
-}
-
-.dropbox {
-	width: 300px;
-	height: 120px;
-	border: 2px dashed gray;
-	text-align: center;
-	padding-top: 40px;
-
-	grid-column: 1/2;
-	grid-row: 1/4;
-}
-
-label[for="dueDate"] {
-	grid-column: 2/3;
-	grid-row: 1/2;
-
-	align-self: left;
-}
-
-#dueDate {
-	grid-column: 3/4;
-	grid-row: 1/2;
-
-	align-self: left;
-}
-
-label[for="commentText"] {
-	grid-column: 4/5;
-	grid-row: 1/2;
-}
-
-#commentText {
-	grid-column: 4/5;
-	grid-row: 2/4;
-}
-
-label[for="sugestions"] {
-	grid-column: 2/3;
-	grid-row: 2/3;
-}
-
-#selectDates {
-	grid-column: 3/4;
-	grid-row: 2/3;
-}
-
-.subGrid {
-	grid-column: 1/2;
-	grid-row: 3/5;
-
-	display: grid;
-	grid-template: 1fr 1fr;
-	grid-gap: 5px;
-}
-
-label[for="fileNum"] {
-	grid-column: 1/2;
-	grid-row: 1/2;
-
-	align-self: center;
-}
-
-#fileNum {
-	grid-column: 2/3;
-	grid-row: 1/2;
-}
-
-label[for="deliveryDate"] {
-	grid-column: 1/2;
-	grid-row: 2/3;
-
-	align-self: center;
-}
-
-#deliveryDate {
-	grid-column: 2/3;
-	grid-row: 2/3;
-}
-
-label[for="currentStatus"] {
-	grid-column: 2/3;
-	grid-row: 3/4;
-}
-
-#currentStatus {
-	grid-column: 3/4;
-	grid-row: 3/4;
-}
-
-label[for="newStatus"] {
-	grid-column: 2/3;
-	grid-row: 4/5;
-}
-
-#newStatus {
-	grid-column: 3/4;
-	grid-row: 4/5;
-}
-
-#submit {
-	grid-column: 4/5;
-	grid-row: 4/5;
-
-	justify-self: right;
-}
-
-form > label, input, select {
-	align-self: center;
+	grid-template-columns: 950px;
 }
 
 .wrap {
@@ -158,6 +43,14 @@ iframe {
 	height: 1000px;
 }
 
+.dropbox {
+	width: 300px;
+	height: 120px;
+	border: 2px dashed gray;
+	text-align: center;
+	padding-top: 40px;
+}
+
 label[for="input"] {
 	background: green;
 	border-radius: 4px;
@@ -174,7 +67,6 @@ label[for="input"] {
 
 #popup {
 	position: absolute;
-	/* border: 1px solid grey; */
 	background: white;
 }
 

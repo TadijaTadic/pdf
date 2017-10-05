@@ -6,37 +6,57 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 </head>
 <body>
-	<div class="wrapper">
+
+	<div class="wrapper" id="wrapper" hidden>
 		<form id="form" class="form" action="" method="POST" target="_blank" onsubmit="event.preventDefault(); sendData(form);">
-			<div class="dropbox" id="dropbox">
-				Drop file here or:
-				<label for="input">Choose a file</label> 
-				<input class="" style="display: none;" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf">
+			<div class="form-group row">
+				<label for="fileNum" class="col-2 col-form-label">File number</label>		
+				<div class="col-3">
+					<input class="form-control" id=fileNum type="text" name="fileNum">
+				</div>
+				<label for="currentStatus" class="col-2 col-form-label">Current Status</label>
+				<div class="col-3">
+					<input class="form-control" id="currentStatus" type="text" name="currentStatus" value="National procedure">
+				</div>
 			</div>
-			<label for="dueDate">Due date: </label>
-			<input class="form-control" style="width: 150px;" name="dueDate" id="dueDate" type="text">
-			<label for="commentText">Comment: </label>
-			<textarea class="form-control" rows="7" style="width: 300px;" name="commentText" id="commentText"></textarea>
-			<label for="sugestions">Sugestions: </label>
-			<select class="form-control" style="width: 150px;" id="selectDates" name="sugestions" onchange="updateDueDate(this.options)"></select>
-			<div class="subGrid">
-				<label for="fileNum" >File number: </label>		
-				<input class="form-control" style="width: 150px;" id=fileNum type="text" name="fileNum">
-				<label for="deliveryDate">Delivery date: </label>
-				<input class="form-control" style="width: 150px;" id="deliveryDate" type="text" name="deliveryDate">
+			<div class="form-group row">
+				<label for="deliveryDate" class="col-2 col-form-label">Delivery date</label>
+				<div class="col-3">
+					<input class="form-control" id="deliveryDate" type="text" name="deliveryDate">
+				</div>
+				<label for="newStatus" class="col-2 col-form-label">New status</label>
+				<div class="col-3">
+					<select class="form-control" name="newStatus" id="newStatus">
+						<option value="1">National procedure</option>
+						<option value="2">National procedure - granted</option>
+						<option value="4">National procedure - declined</option>
+					</select>
+				</div>
 			</div>
-			<label for="currentStatus">Current Status: </label>
-			<input class="form-control" style="width: 150px; font-size: 90%;" id="currentStatus" type="text" name="currentStatus" value="National procedure">
-			<label for="newStatus">New status: </label>
-			<select class="form-control" style="width: 150px; font-size: 90%;" name="newStatus" id="newStatus">
-				<option value="1">National procedure</option>
-				<option value="2">National procedure - granted</option>
-				<option value="4">National procedure - declined</option>
-			</select>
+			<div class="form-group row">
+				<label for="dueDate" class="col-2 col-form-label">Due date</label>
+				<div class="input-group col-3">
+					<input class="form-control"  name="dueDate" id="dueDate" type="text">
+					<span class="input-group-btn">
+						<button class="btn btn-secondary" type="button">Go!</button>
+					</span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="commentText" class="col-2 col-form-label">Comment: </label>
+				<div class="input-group col-3">
+					<textarea class="form-control" rows="7" name="commentText" id="commentText"></textarea>
+				</div>
+			</div>
 			<input class="btn btn-primary" type="submit" value="Submit" id="submit">
+
+			<!-- <label for="sugestions">Sugestions: </label>
+			<select class="form-control" style="width: 150px;" id="selectDates" name="sugestions" onchange="updateDueDate(this.options)"></select> -->
 		</form>
 
+		
 		<div class="wrap">
+			<button class="btn btn-secondary" onclick="goBack()">Back</button>
 			<div class="chooseView">
 				<div id="parsingStatus">Parsing status: </div>
 				<div class="progressBar">
@@ -63,8 +83,23 @@
 		<button class="btn btn-outline-primary btn-sm" onclick="setData('commentText')">Comment</button><br>
 	</div>
 
+	<div id="uploadPage">
+		<div class="dropbox" id="dropbox">
+			Drop file here or:
+			<label for="input">Choose a file</label> 
+			<input class="" style="display: none;" type="file" id="input" onchange="handleFiles(this.files)" accept=".pdf" multiple>
+		</div>
+
+		<br>
+		<br>
+
+		<table id="uploadedFilesTable" class="table table-bordered">
+		</table>
+	</div>
+
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript" src="js/helper.js"></script>
+	<script type="text/javascript" src="js/upload-files-script.js"></script>
 
 </body>
 </html>

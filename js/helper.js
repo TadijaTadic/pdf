@@ -83,7 +83,7 @@ function resetFields() {
     document.getElementById('fileNum').value = "";
     document.getElementById('deliveryDate').value = "";
     document.getElementById('dueDate').value = "";
-    document.getElementById('selectDates').innerHTML = "";
+    // document.getElementById('selectDates').innerHTML = "";
     document.getElementById('pdfText').textContent = "";
     document.getElementById('commentText').value = "";
     document.getElementById('parsingStatus').innerHTML = "Parsing status: "
@@ -91,4 +91,9 @@ function resetFields() {
 
 function newDueDate(obj) {
     console.log(obj.value);
+}
+
+function goBack() {
+    document.getElementById('uploadPage').hidden = false;
+    document.getElementById('wrapper').hidden = true;
 }
