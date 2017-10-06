@@ -1,6 +1,7 @@
 var dropbox = document.getElementById('dropbox');
 var pdfText = document.getElementById('pdfText');
 var popup = document.getElementById('popup');
+var btnChooseDates = document.getElementById('btnChooseDates');
 
 dropbox.addEventListener("dragenter", dragenter, false);
 dropbox.addEventListener("dragover", dragover, false);
@@ -11,9 +12,8 @@ pdfText.addEventListener("contextmenu", openPopup, false);
 pdfText.addEventListener("click", function(){
     popup.hidden = true;
 });
-pdfText.addEventListener("blur", function(){
-    //popup.hidden = true;
-});
+//btnChooseDates.addEventListener("click", chooseDates, false);
+//btnChooseDates.addEventListener("blur", hidePopup, false);
 
 function dragenter(e) {
     e.stopPropagation();
@@ -83,7 +83,6 @@ function resetFields() {
     document.getElementById('fileNum').value = "";
     document.getElementById('deliveryDate').value = "";
     document.getElementById('dueDate').value = "";
-    // document.getElementById('selectDates').innerHTML = "";
     document.getElementById('pdfText').textContent = "";
     document.getElementById('commentText').value = "";
     document.getElementById('parsingStatus').innerHTML = "Parsing status: "
@@ -96,4 +95,5 @@ function newDueDate(obj) {
 function goBack() {
     document.getElementById('uploadPage').hidden = false;
     document.getElementById('wrapper').hidden = true;
+    removeElementsFromPopup();
 }

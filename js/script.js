@@ -31,7 +31,7 @@ function getData() {
   var document_id = uploadedDoucuments.getItem(selectedFile.name);
   var url = `https://api.docparser.com/v1/results/${parser_id}/${document_id}`;
   var req = new XMLHttpRequest();
-  req.addEventListener("loadend", getParsedData);
+  req.addEventListener("loadend", getParsedData, false);
   req.open('GET', url, true);
   req.responseType = 'json';
   req.setRequestHeader("Authorization", "Basic " + user);
@@ -93,20 +93,27 @@ function getParsedData() {
   }
   if (due_date != null) {
     if (!Array.isArray(due_date)) {
-      // var select = document.getElementById('selectDates');
-      // var options = document.createElement('option');
-      // options.value = due_date.formatted;
-      // options.textContent = due_date.formatted;
-      // select.appendChild(options);
       document.getElementById('dueDate').value = due_date.formatted;
+      var menu = document.getElementById('dropMenu');
+      var button = document.createElement("button");
+      button.addEventListener("click", setDueDate);
+      button.type = "button";
+      button.className = "dropdown-item";
+      let text = document.createTextNode(due_date.formatted);
+      button.appendChild(text);
+      menu.appendChild(button);
     }
     else {
       due_date.forEach(function(element, index) {
-        // var select = document.getElementById('selectDates');
-        // var options = document.createElement('option');
-        // options.value = element.formatted;
-        // options.textContent = element.formatted;
-        //select.appendChild(options);
+        document.getElementById('dueDate').value = due_date.formatted;
+        var menu = document.getElementById('dropMenu');
+        var button = document.createElement("button");
+        button.addEventListener("click", setDueDate);
+        button.type = "button";
+        button.className = "dropdown-item";
+        let text = document.createTextNode(element.formatted);
+        button.appendChild(text);
+        menu.appendChild(button);
       });
       document.getElementById('dueDate').value = due_date[0].formatted;
     }
@@ -195,4 +202,28 @@ function formatDate(date) {
       mm = '0'+mm
   } 
   return yyyy + '.' + mm + '.' + dd;
+}
+
+function setDueDate() {
+  document.getElementById("dueDate").value = this.textContent;
+  document.getElementById("popupDates").hidden = true;
+}
+
+function chooseDates(e) {
+  var d = document.getElementById('popupDates');
+  d.hidden = false;
+  d.style.left = e.pageX-e.offsetX+85+'px';
+  d.style.top = e.pageY-e.offsetY+'px';
+}
+
+function hidePopup() {
+  setTimeout(() => document.getElementById("popupDates").hidden = true, 100);
+}
+
+function removeElementsFromPopup() {
+  var parent = document.getElementById("dropMenu");
+  var children = Array.from(parent.children);
+  children.forEach(function(child) {
+    parent.removeChild(child);
+  }, this);
 }

@@ -1,7 +1,7 @@
 body {
 	padding-top: 20px;
 	padding-left: 10%;
-	padding-right: 40%;
+	padding-right: 10%;
 }
 
 .wrapper {
@@ -13,7 +13,7 @@ body {
 	grid-column: 1/5;
 	grid-row: 2/3;
 
-	width: 100%;
+	width: 950px;
 	height: 1000px;
 	border: 1px solid lightgray;
 	border-radius: 5px;
@@ -44,11 +44,11 @@ iframe {
 }
 
 .dropbox {
-	width: 300px;
-	height: 120px;
+	width: 400px;
+	height: 200px;
 	border: 2px dashed gray;
 	text-align: center;
-	padding-top: 40px;
+	padding-top: 80px;
 }
 
 label[for="input"] {
@@ -70,10 +70,29 @@ label[for="input"] {
 	background: white;
 }
 
+#popupDates {
+	position: absolute;
+	background: white;
+	z-index: 2;
+}
+
 .progressBar {
 	display: grid;
 	grid-template-columns: 90% 10%;
 }
 
+#uploadPage {
+	width: 950px;
+}
 
+table.table-bordered {
+    border:1px solid grey;
+}
 
+table.table-bordered > thead > tr > td{
+    border:1px solid grey;
+}
+
+table.table-bordered > tbody > tr > td{
+    border:1px solid grey;
+}

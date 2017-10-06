@@ -16,8 +16,9 @@ function handleFiles(files) {
 
     var fileNumber = window.localStorage.getItem(`${file.name}+"ID"`);
 
-    cell1.innerHTML = fileNumber ? fileNumber : "File number";
-    cell2.innerHTML = `<a>${file.name}</a>`;
+    cell1.innerHTML = fileNumber ? fileNumber : "";
+    cell1.style.width = "30%";
+    cell2.innerHTML = `<button type="button" class="btn btn-link">${file.name}</button>`;
 
     row.addEventListener("mousedown", rowClicked);
     cell2.addEventListener("click", fileClicked);
