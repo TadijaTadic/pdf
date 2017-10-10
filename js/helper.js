@@ -1,7 +1,6 @@
 var dropbox = document.getElementById('dropbox');
 var pdfText = document.getElementById('pdfText');
 var popup = document.getElementById('popup');
-var btnChooseDates = document.getElementById('btnChooseDates');
 
 dropbox.addEventListener("dragenter", dragenter, false);
 dropbox.addEventListener("dragover", dragover, false);
@@ -12,8 +11,6 @@ pdfText.addEventListener("contextmenu", openPopup, false);
 pdfText.addEventListener("click", function(){
     popup.hidden = true;
 });
-//btnChooseDates.addEventListener("click", chooseDates, false);
-//btnChooseDates.addEventListener("blur", hidePopup, false);
 
 function dragenter(e) {
     e.stopPropagation();
@@ -93,6 +90,7 @@ function newDueDate(obj) {
 }
 
 function goBack() {
+    handleFiles(uploadedFiles);
     document.getElementById('uploadPage').hidden = false;
     document.getElementById('wrapper').hidden = true;
     removeElementsFromPopup();

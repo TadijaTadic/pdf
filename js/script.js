@@ -186,6 +186,7 @@ function sendData(form) {
     }
     if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 400) {
       var result = xhr.responseText;
+      var message = JSON.parse(result);
       alert(xhr.responseText);
     }
   }
